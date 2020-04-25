@@ -1,0 +1,23 @@
+{
+  "version": "1.0.0",
+  "name": "sample-vue-kaiui-app",
+  "description": "Sample Vue KaiUI App for KaiOS",
+  "type": "web",
+  "launch_path": "/index.html",
+  "icons": {
+    "56": "/assets/icons/kaios_56.png",
+    "112": "/assets/icons/kaios_112.png"
+  },
+  "developer": {
+    "name": "Sebastian Baar",
+    "url": "https://github.com/sebastianbaar"
+  },
+  "locales": {
+    "en-US": {
+      "name": "sample-vue-kaiui-app",
+      "subtitle": "Sample Vue KaiUI App for KaiOS",
+      "description": "Sample Vue KaiUI App for KaiOS"
+    }
+  },
+  "default_locale": "en-US"
+}
