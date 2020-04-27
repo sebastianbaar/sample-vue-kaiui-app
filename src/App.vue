@@ -1,9 +1,11 @@
 <template>
-  <kaiui-content>
+  <kaiui-content ref="content">
     <kaiui-header title="ToDo List" />
     <kaiui-tabs>
       <kaiui-tab-item name="Item One" selected>
-        <kaiui-text text="This is a standard Text element with a lot of Text in it. Hope you like it. Enjoy!" />
+        <kaiui-text
+          text="This is a standard Text element with a lot of Text in it. Hope you like it. Enjoy!"
+        />
         <kaiui-input v-on:onEnter="toggleSoftkeys" label="Add a Task" placeholder="New Item" />
         <kaiui-separator title="Separator Title" />
         <kaiui-input-multi label="Multi" placeholder="More Items" />
@@ -38,18 +40,14 @@
         <kaiui-list-item
           primaryText="List Item Title"
           secondaryText="Subtitle for List Item Title"
-          tertiaryText="Tertiary Text for List Item Title"
+          tertiaryText="Very very long Tertiary Text for List Item Title"
           iconLeft="kai-icon-calendar"
           iconRight="kai-icon-favorite-on"
         />
       </kaiui-tab-item>
 
       <kaiui-tab-item name="Item Three">
-        <kaiui-toast title="Hi, I'm a Toast!" ref="toast" />
-        <kaiui-button
-          v-on:softCenter="toggleToastButtonSoftCenterClicked"
-          title="Show Toast"
-        />
+        <kaiui-button v-on:softCenter="toggleToastButtonSoftCenterClicked" title="Show Toast" />
         <kaiui-checkbox
           primaryText="Checkbox Item Title"
           secondaryText="Subtitle for Checkbox List Item Title"
@@ -61,13 +59,22 @@
       <kaiui-tab-item name="Item Four">
         <kaiui-text text="Slider Fun..." />
         <kaiui-separator title="Separator Title" />
-        <kaiui-slider title="Alarm" v-bind:maxValue="10" />
+        <kaiui-slider
+          title="Alarm"
+          v-bind:startValue="sliderStartValue"
+          v-on:change="sliderValueChanged"
+          v-bind:minValue="0"
+          v-bind:maxValue="20"
+          v-bind:step="0.5"
+        />
+        <kaiui-text v-bind:text="sliderTextValue" />
         <kaiui-checkbox primaryText="Checkbox Item Title" />
       </kaiui-tab-item>
 
       <kaiui-tab-item name="Item Five">
         <kaiui-separator title="Separator Title" />
         <kaiui-input v-on:onEnter="toggleSoftkeys" label="Add a Task" placeholder="New Item" />
+        <kaiui-checkbox primaryText="Checkbox Item Title" />
       </kaiui-tab-item>
     </kaiui-tabs>
   </kaiui-content>
@@ -79,6 +86,8 @@ export default {
   components: {},
   data: () => ({
     softkeysPhone: { left: "What's App", center: "Call", right: "SMS" },
+    sliderStartValue: 10,
+    sliderTextValue: "Slider value is 10"
   }),
   methods: {
     toggleSoftkeys(input) {
@@ -91,7 +100,10 @@ export default {
       alert("Calling Mom...");
     },
     toggleToastButtonSoftCenterClicked() {
-      this.$refs.toast.show()
+      this.$refs.content.showToast("Hi, I'm a Toast!");
+    },
+    sliderValueChanged(value) {
+      this.sliderTextValue = "Slider value is " + value;
     }
   }
 };
