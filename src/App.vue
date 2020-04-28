@@ -6,7 +6,12 @@
         <kaiui-text
           text="This is a standard Text element with a lot of Text in it. Hope you like it. Enjoy!"
         />
-        <kaiui-input v-on:onEnter="toggleSoftkeys" label="Add a Task" placeholder="New Item" />
+        <kaiui-input
+          v-on:input="onInputChanged"
+          label="Add a Task"
+          placeholder="New Item"
+        />
+        <kaiui-text v-bind:text="inputFieldText" />
         <kaiui-separator title="Separator Title" />
         <kaiui-input-multi label="Multi" placeholder="More Items" />
         <kaiui-separator title="Separator Title" />
@@ -73,7 +78,7 @@
 
       <kaiui-tab-item name="Item Five">
         <kaiui-separator title="Separator Title" />
-        <kaiui-input v-on:onEnter="toggleSoftkeys" label="Add a Task" placeholder="New Item" />
+        <kaiui-input label="Add a Task" placeholder="New Item" />
         <kaiui-checkbox primaryText="Checkbox Item Title" />
       </kaiui-tab-item>
     </kaiui-tabs>
@@ -86,24 +91,28 @@ export default {
   components: {},
   data: () => ({
     softkeysPhone: { left: "What's App", center: "Call", right: "SMS" },
+    inputFieldText: "...",
     sliderStartValue: 10,
     sliderTextValue: "Slider value is 10"
   }),
   methods: {
     toggleSoftkeys(input) {
-      alert(input);
+      this.showToast(input);
     },
     phoneButtonSoftRightClicked() {
-      alert("SMS send");
+      this.showToast("SMS send!");
     },
     phoneButtonSoftCenterClicked() {
-      alert("Calling Mom...");
+      this.showToast("Calling Mom...!");
     },
     toggleToastButtonSoftCenterClicked() {
-      this.$refs.content.showToast("Hi, I'm a Toast!");
+      this.showToast("Hi, I'm a Toast!");
     },
     sliderValueChanged(value) {
       this.sliderTextValue = "Slider value is " + value;
+    },
+    onInputChanged(newValue) {
+      this.inputFieldText = newValue
     }
   }
 };
