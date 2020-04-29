@@ -1,21 +1,17 @@
 <template>
-  <kaiui-content ref="content">
+  <kaiui-content>
     <kaiui-header title="ToDo List" />
     <kaiui-tabs>
       <kaiui-tab-item name="Item One" selected>
         <kaiui-text
           text="This is a standard Text element with a lot of Text in it. Hope you like it. Enjoy!"
         />
-        <kaiui-input
-          v-on:input="onInputChanged"
-          label="Add a Task"
-          placeholder="New Item"
-        />
+        <kaiui-input v-on:input="onInputChanged" label="Add a Task" placeholder="New Item" />
         <kaiui-text v-bind:text="inputFieldText" />
         <kaiui-separator title="Separator Title" />
         <kaiui-input-multi label="Multi" placeholder="More Items" />
         <kaiui-separator title="Separator Title" />
-        <kaiui-button icon="kai-icon-calendar" title="Button Title" />
+        <kaiui-button icon="kai-icon-calendar" title="Show Dialog" v-on:softCenter="showDialog" />
         <kaiui-button
           v-bind:softkeys="softkeysPhone"
           v-on:softRight="phoneButtonSoftRightClicked"
@@ -25,6 +21,14 @@
           title="Button Title"
         />
         <kaiui-button title="Button Title" />
+
+        <kaiui-dialog
+          title="Congratulations"
+          text="You have successfully signed in. Good Job!"
+          v-model="shouldShowDialog"
+          v-on:softLeft="dialogLeftSelected"
+          v-on:softRight="dialogRightSelected"
+        />
       </kaiui-tab-item>
 
       <kaiui-tab-item name="Item Two">
@@ -93,7 +97,8 @@ export default {
     softkeysPhone: { left: "What's App", center: "Call", right: "SMS" },
     inputFieldText: "...",
     sliderStartValue: 10,
-    sliderTextValue: "Slider value is 10"
+    sliderTextValue: "Slider value is 10",
+    shouldShowDialog: false
   }),
   methods: {
     toggleSoftkeys(input) {
@@ -112,7 +117,16 @@ export default {
       this.sliderTextValue = "Slider value is " + value;
     },
     onInputChanged(newValue) {
-      this.inputFieldText = newValue
+      this.inputFieldText = newValue;
+    },
+    dialogRightSelected() {
+      this.showToast("Dialog 'OK' selected");
+    },
+    dialogLeftSelected() {
+      this.showToast("Dialog 'Cancel' selected");
+    },
+    showDialog() {
+      this.shouldShowDialog = !this.shouldShowDialog
     }
   }
 };

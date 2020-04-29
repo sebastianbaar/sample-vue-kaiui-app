@@ -14,8 +14,3 @@ npm run serve
 ```console
 npm run build
 ```
-
-## Send the app to a KaiOS device
-
-follow [os-env-setup](https://developer.kaiostech.com/getting-started/env-setup/os-env-setup) and [test-your-apps](https://developer.kaiostech.com/getting-started/build-your-first-package-app/test-your-apps)
-install to your device.
