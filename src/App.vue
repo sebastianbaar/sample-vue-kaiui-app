@@ -205,4 +205,8 @@ export default {
 </script>
 
 <style>
+:root {
+  --primary-color: red;
+  --primary-dark-color: darkred; 
+}
 </style>
