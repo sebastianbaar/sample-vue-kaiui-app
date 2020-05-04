@@ -69,7 +69,7 @@
           />
           <kaiui-radiobutton
             value="Three"
-            primaryText="Checkbox Item 'Three'"
+            primaryText="Radio button 'Three'"
             secondaryText="Subtitle for Radio button"
           />
         </kaiui-radiogroup>
