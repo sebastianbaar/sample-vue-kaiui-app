@@ -207,6 +207,6 @@ export default {
 <style>
 :root {
   --primary-color: red;
-  --primary-dark-color: darkred; 
+  --primary-dark-color: darkred;
 }
 </style>
